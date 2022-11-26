@@ -52,13 +52,13 @@ class DataLoader:
 
 
     def WeightLoad(self, file):
-        
+
         try:
             weight = json.load(open(file, encoding='ISO-8859-2'))
-            weightActual = weight[len(weight)-1]['v']
+            weightActual = weight[-1]['v']
             if len(weight) < 2:
                 return (weightActual, weightActual)
-            weightPrevious = weight[len(weight)-2]['v']
+            weightPrevious = weight[-2]['v']
             return (weightActual, weightPrevious)
         except:
             return None
@@ -66,7 +66,7 @@ class DataLoader:
     def WaistLoad(self, file):
         try:
             waist = json.load(open(file, encoding='ISO-8859-2'))
-            waistActual = waist[len(waist)-1]['v']
+            waistActual = waist[-1]['v']
             return (waistActual)
         except:
             return None
