@@ -1,3 +1,17 @@
+"""
+nacteme data, potom vyhod
+
+
+"""
+
+
+
+
+
+
+
+
+
 def main():
     ...
     
