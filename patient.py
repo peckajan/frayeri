@@ -7,6 +7,7 @@ class Patient():
         self._HbA1c_20 = HbA1c_20
         self._HbA1c_21 = HbA1c_21
         self._HbA1c_22 = HbA1c_22
+        self._dm_type = dm_type
     
     @property
     def patient_id(self):
@@ -55,3 +56,11 @@ class Patient():
     @HbA1c_22.setter
     def HbA1c_22(self, HbA1c_22):
         self._HbA1c_22 = HbA1c_22
+
+    @property
+    def dm_type(self):
+        return self._dm_type
+    
+    @dm_type.setter
+    def dm_type(self, dm_type):
+        self._dm_type = dm_type
