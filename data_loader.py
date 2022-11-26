@@ -63,10 +63,4 @@ class DataLoader:
         except:
             return None
 
-    def WaistLoad(self, file):
-        try:
-            waist = json.load(open(file, encoding='ISO-8859-2'))
-            waistActual = waist[-1]['v']
-            return (waistActual)
-        except:
-            return None
+    def HbA1CLoad(self, file)
