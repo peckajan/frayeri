@@ -6,10 +6,13 @@ nacteme data, potom vyhod
 
 
 
-class Patient:
+class Patient():
 
-    def __init__(self) -> None:
+    def __init__(self, diagnosis=0, exercise=0, diet=0, medicaton=0) -> None:
         pass
+
+    @property
+    def 
 
 
 
