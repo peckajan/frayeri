@@ -1,72 +1,21 @@
-"""
-dg z amb zpráv 👌
-kroky 👌
-energie
-čas cvičení
-heart rate resting
-heart rate walking
-ekg
-váha 👌
-obvod pasu 👌
-
-
-"""
-
-import json
-from os.path import join as path_join
 from patient import Patient
-from time import strptime
+import csv
 
 class DataLoader:
-    def __init__(self, folder) -> None:
-        self.folder = folder
+    def __init__(self, file) -> None:
+        self.file = file
 
-    def MakePatient(self, folder) -> Patient:
-        dg_path = path_join(folder, 'dg.txt')
-        step_path = path_join(folder, 'steps.txt')
-        weight_path = path_join(folder, 'weight.txt')
-        waist_path = path_join(folder, 'waist.txt')
-
-        return Patient(
-             self.DgLoad(dg_path),
-             self.StepLoad(step_path),
-             self.WeightLoad(weight_path),
-             self.WaistLoad(waist_path)
-             )
-
-    def DgLoad(self, file):
-        diag = json.load(open(file, encoding='ISO-8859-2'))
-        diag = [x.split(':') for x in diag]
-        diag = [x if len(x) == 2 else [None, x[0]] for x in diag]
-        return diag
-
-
-    def StepLoad(self, file):
-        try:
-            steps = json.load(open(file, encoding='ISO-8859-2'))
-        except:
-            return None
-        for record in steps:
-            record['date'] = strptime(record['date'], '%Y-%m-%d')
-        return steps
-
-
-    def WeightLoad(self, file):
-
-        try:
-            weight = json.load(open(file, encoding='ISO-8859-2'))
-            weightActual = weight[-1]['v']
-            if len(weight) < 2:
-                return (weightActual, weightActual)
-            weightPrevious = weight[-2]['v']
-            return (weightActual, weightPrevious)
-        except:
-            return None
-
-    def WaistLoad(self, file):
-        try:
-            waist = json.load(open(file, encoding='ISO-8859-2'))
-            waistActual = waist[-1]['v']
-            return (waistActual)
-        except:
-            return None
+    def MakePatient(self, file) -> list:
+        list_patients = []
+        with open(r"D:\Stažené soubory z Chrome\hackath_112022_-_HbA1c_IOL.csv", "r") as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                patient_id = row['ï»¿Patient']
+                HbA1c_18 = row['HbA1c_18']
+                HbA1c_19 = row['HbA1c_19']
+                HbA1c_20 = row['HbA1c_20']
+                HbA1c_21 = row['HbA1c_21']
+                HbA1c_22 = row['HbA1c_22']
+                dm_type = row['diabetes type']
+                list_patients.append(Patient(patient_id, HbA1c_18, HbA1c_19, HbA1c_20, HbA1c_21, HbA1c_22, dm_type))
+            return list_patients

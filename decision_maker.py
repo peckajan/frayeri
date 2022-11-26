@@ -1,26 +1,14 @@
-"""
-nacteme data, potom vyhod
-
-
-"""
-
-
-
-class Patient():
-
-    def __init__(self, diagnosis=0, exercise=0, diet=0, medicaton=0) -> None:
-        pass
-
-    @property
-    def 
-
-
-
+from patient import Patient
+from data_loader import DataLoader
 
 class DecisionMaker:
     
     def __init__(self) -> None:
-        pass
+        dl = DataLoader()
+        self._patient = dl.MakePatient(...)
+
+    def decisions(self):
+        ...
 
 
 
