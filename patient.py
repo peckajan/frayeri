@@ -4,7 +4,7 @@ import datetime
 
 class Patient():
 
-    def __init__(self, diagnosis, step_records=None, diet=None, medicaton=None) -> None:
+    def __init__(self, diagnosis=None, step_records=None, diet=None, medicaton=None) -> None:
         self._diagnosis = diagnosis
         self._step_records = sorted(step_records, key=lambda item: item['date'])
 
@@ -14,7 +14,16 @@ class Patient():
 
     @diagnosis.setter
     def diagnosis(self, diagnosis):
-      self._diagnosis = diagnosis
+        for single_diagnosis in diagnosis:
+            if "E10" in single_diagnosis[0]:
+                diagnosis = 1
+                break
+            elif "E11" in single_diagnosis[0]:
+                diagnosis = 2
+                break
+            else:
+                diagnosis = None
+        self._diagnosis = diagnosis
 
     @property
     def step_records(self):
