@@ -4,9 +4,11 @@ import datetime
 
 class Patient():
 
-    def __init__(self, diagnosis=None, step_records=None, diet=None, medicaton=None) -> None:
+    def __init__(self, diagnosis=None, step_records=None, weight=None, HbA1c=None) -> None:
         self._diagnosis = diagnosis
         self._step_records = sorted(step_records, key=lambda item: item['date'])
+        self._weight = weight
+        self._HbA1c = HbA1c
 
     @property
     def diagnosis(self):
@@ -42,25 +44,17 @@ class Patient():
       return np.mean(potential_records)
 
     @property
-    def exercise(self):
-        return self._exercise
+    def weight(self):
+        return self._weight
 
-    @exercise.setter
-    def exercise(self, exercise):
-        ...
-
-    @property
-    def diet(self):
-        return self._diet
-
-    @diet.setter
-    def diet(self, diet):
-        ...
+    @weight.setter
+    def weight(self, weight):
+        self._weight = weight
 
     @property
-    def diet(self):
-        return self._diet
+    def HbA1c(self):
+        return self._HbA1c
 
-    @diet.setter
-    def diet(self, diet):
-        ...
+    @HbA1c.setter
+    def diet(self, HbA1c):
+        self._HbA1c = HbA1c
