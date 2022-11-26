@@ -1,11 +1,8 @@
-import os
-import re
-import patient
 """
 dg z amb zpráv 👌
 kroky 👌
 energie
-čas cvičení 
+čas cvičení
 heart rate resting
 heart rate walking
 ekg
@@ -15,48 +12,55 @@ obvod pasu 👌
 
 """
 
+import json
+from os.path import join as path_join
+from patient import Patient
+
+class DataLoader:
+    def __init__(self, folder) -> None:
+        self.folder = folder
+
+    def MakePatient(self, folder) -> Patient:
+        dg_path = path_join(folder, 'dg.txt')
+        step_path = path_join(folder, 'steps.txt')
+        weight_path = path_join(folder, 'weight.txt')
+        waist_path = path_join(folder, 'waist.txt')
+
+        return Patient(
+             self.DgLoad(dg_path),
+             self.StepLoad(step_path),
+             self.WeightLoad(weight_path),
+             self.WaistLoad(waist_path)
+             )
+
+    def DgLoad(self, file):
+        diag = json.load(open(file, encoding='ISO-8859-2'))
+        diag = [x.split(':') for x in diag]
+        diag = [x if len(x) == 2 else [None, x[0]] for x in diag]
+        print(diag)
+        return diag
 
 
-class DataManger:
-    def __init__(self, root=r"C:\Users\janpe\Downloads\xd\hackathon.tar\hackathon") -> None:
-        self.root = root
-        self.patients = []
-        for dirname in os.listdir(self.root):
-            f = os.path.join(self.root, dirname)
-            for file in os.listdir(f):
-                print(file)
-                if file == "dg.txt":
-                    self.DgLoad(os.path.join(f, file))
-                
-            break
-            
-        # checking if it is a file
-
-    def GetPatient(self):
+    def StepLoad(self, file):
         pass
 
-    def DgLoad(self, filepath):
-        if re.search("E10|E11")
-        pass
+    def WeightLoad(self, file):
+        
+        try:
+            weight = json.load(open(file, encoding='ISO-8859-2'))
+            weightActual = weight[len(weight)-1]['v']
+            if len(weight) < 2:
+                return (weightActual, weightActual)
+            weightPrevious = weight[len(weight)-2]['v']
+            return (weightActual, weightPrevious)
+        except:
+            return None
 
-    def StepLoad(self):
-        pass
-
-    def WeightLoad(self):
-        pass
-
-    def WaistLoad(self):
-        pass
-
-    
-
-
-
-
-
-    
-def main():
-    d = DataManger()
-    
-if __name__ == "__main__":
-    main()
+    def WaistLoad(self, file):
+        try:
+            waist = json.load(open(file, encoding='ISO-8859-2'))
+            waistActual = waist[len(waist)-1]['v']
+            print(waistActual)
+            return (waistActual)
+        except:
+            return None
