@@ -4,7 +4,7 @@ import datetime
 
 class Patient():
 
-    def __init__(self, diagnosis, step_records=None, diet=None, medicaton=None) -> None:
+    def __init__(self, diagnosis=None, step_records=None, diet=None, medicaton=None) -> None:
         self._diagnosis = diagnosis
         self._step_records = sorted(step_records, key=lambda item: item['date'])
 
