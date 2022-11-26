@@ -37,7 +37,6 @@ class DataLoader:
         diag = json.load(open(file, encoding='ISO-8859-2'))
         diag = [x.split(':') for x in diag]
         diag = [x if len(x) == 2 else [None, x[0]] for x in diag]
-        print(diag)
         return diag
 
 
@@ -60,7 +59,6 @@ class DataLoader:
         try:
             waist = json.load(open(file, encoding='ISO-8859-2'))
             waistActual = waist[len(waist)-1]['v']
-            print(waistActual)
             return (waistActual)
         except:
             return None
