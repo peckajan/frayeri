@@ -2,7 +2,7 @@
 dg z amb zpráv 👌
 kroky 👌
 energie
-čas cvičení 
+čas cvičení
 heart rate resting
 heart rate walking
 ekg
@@ -13,7 +13,7 @@ obvod pasu 👌
 """
 
 
-class DataManger:
+class DataLoader:
     def __init__(self) -> None:
         pass
 
