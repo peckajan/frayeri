@@ -15,6 +15,7 @@ obvod pasu 👌
 import json
 from os.path import join as path_join
 from patient import Patient
+from time import strptime
 
 class DataLoader:
     def __init__(self, folder) -> None:
@@ -41,7 +42,14 @@ class DataLoader:
 
 
     def StepLoad(self, file):
-        pass
+        try:
+            steps = json.load(open(file, encoding='ISO-8859-2'))
+        except:
+            return None
+        for record in steps:
+            record['date'] = strptime(record['date'], '%Y-%m-%d')
+        return steps
+
 
     def WeightLoad(self, file):
         
