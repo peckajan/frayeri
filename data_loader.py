@@ -7,7 +7,7 @@ class DataLoader:
 
     def MakePatient(self, file) -> list:
         list_patients = []
-        with open(r"D:\Stažené soubory z Chrome\hackath_112022_-_HbA1c_IOL.csv", "r") as csv_file:
+        with open("hackath_112022_-_HbA1c_IOL.csv", "r") as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
                 patient_id = row['ï»¿Patient']
