@@ -1,6 +1,8 @@
+import re
+
 class Patient():
 
-    def __init__(self, diagnosis=0, exercise=0, diet=0, medicaton=0) -> None:
+    def __init__(self, diagnosis=None, exercise=0, diet=0, medicaton=0) -> None:
         self._diagnosis = diagnosis
 
     @property
@@ -9,7 +11,16 @@ class Patient():
 
     @diagnosis.setter
     def diagnosis(self, diagnosis):
-      self._diagnosis = diagnosis
+        for single_diagnosis in diagnosis:
+            if "E10" in single_diagnosis[0]:
+                diagnosis = 1
+                break
+            elif "E11" in single_diagnosis[0]:
+                diagnosis = 2
+                break
+            else:
+                diagnosis = None
+        self._diagnosis = diagnosis
 
     @property
     def exercise(self):
