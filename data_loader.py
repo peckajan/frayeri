@@ -1,3 +1,7 @@
+"""
+It loads data from csv files
+"""
+
 from patient import Patient
 import csv
 
