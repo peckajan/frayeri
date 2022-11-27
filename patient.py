@@ -1,3 +1,9 @@
+"""
+Class repsonsible for storing patient data.
+"""
+
+
+
 class Patient():
 
     def __init__(self, patient_id=0, HbA1c_18=None, HbA1c_19=None, HbA1c_20=None, HbA1c_21=None, HbA1c_22=None, dm_type=None) -> None:
